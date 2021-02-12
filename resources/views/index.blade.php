@@ -85,7 +85,7 @@
                 </div>
 
                 <div class="links">
-                    <a href={{ route('admin.index') }}>Index</a>
+                    <a href={{ route('admin.show') }}>show</a>
                 </div>
             </div>
         </div>
