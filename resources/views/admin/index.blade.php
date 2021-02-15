@@ -45,7 +45,7 @@
                                 @if(isset($admins))  
                                     @foreach ($admins as $admin)
                                         <tr>
-                                            <td>{{ $admin->id }}</td>
+                                            <td><a href="/admin/{{ $admin->id }}">{{ $admin->id }}</a></td>
                                             <td>{{ $admin->admin_code }}</td>
                                             <td>{{ $admin->name }}</td>
                                             <td>{{ $admin->role}}</td>

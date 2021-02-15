@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -38,7 +39,7 @@ class AdminController extends Controller
         if($request->action === 'back') {
             return redirect()->route('admin.index');
         } else {
-            $admin = new Admin;
+            $admin = new \App\Admin;
             $admin->admin_code = $request->admin_code;
             $admin->name = $request->name;
             $admin->role = $request->role;
@@ -56,7 +57,8 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        //
+        $admins = \App\Admin::find($id);
+        return view('admin.show', compact('admins'));//
     }
 
     /**
@@ -67,7 +69,8 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $admins = \App\Admin::find($id);//
+        return view('admin.edit', compact('admins'));
     }
 
     /**
@@ -79,7 +82,17 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($request->action === 'back') {
+            return redirect()->route('admin.index');
+        } else {
+            $admin = \App\Admin::find($id);
+            $admin->admin_code = $request->admin_code;
+            $admin->name = $request->name;
+            $admin->role = $request->role;
+            $admin->password = Hash::make($request->password);
+            $admin->save();
+            return redirect()->route('admin.index');
+        }//
     }
 
     /**
@@ -90,6 +103,8 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $admins = \App\Admin::find($id);
+        $admins->delete();
+        return redirect()->route('admin.index');//
     }
 }
