@@ -28,7 +28,9 @@
                         </ul>
                         </div>
                     @endif
-                    // この辺から追加
+                    <button type="button" class="btn btn-primary" onclick="location.href='{{ route('admin.create') }}'">
+                        {{ __('追加') }}
+                    </button>
                     <div class="table-resopnsive">
                         <table class="table table-striped">
                             <thead>
@@ -40,8 +42,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if(isset($admins))  // $adminデータ存在チェック
-                                    @foreach ($admins as $admin)  // テーブル作成
+                                @if(isset($admins))  
+                                    @foreach ($admins as $admin)
                                         <tr>
                                             <td>{{ $admin->id }}</td>
                                             <td>{{ $admin->admin_code }}</td>
@@ -52,7 +54,6 @@
                                 @endif
                             </tbody>
                         </table>
-                    // この辺まで追加
                     </div>
                 </div>
             </div>

@@ -24,7 +24,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create');//
     }
 
     /**
@@ -35,7 +35,17 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->action === 'back') {
+            return redirect()->route('admin.index');
+        } else {
+            $admin = new Admin;
+            $admin->admin_code = $request->admin_code;
+            $admin->name = $request->name;
+            $admin->role = $request->role;
+            $admin->password = Hash::make($request->password);
+            $admin->save();
+            return redirect()->route('admin.index');
+        }//
     }
 
     /**
