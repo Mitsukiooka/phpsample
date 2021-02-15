@@ -13,7 +13,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        $admins = \App\Admin::all();
+        return view('admin/index', compact('admins'));//
     }
 
     /**
