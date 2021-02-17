@@ -12,10 +12,17 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $admins = \App\Admin::all();
-        return view('admin/index', compact('admins'));//
+        
+        $name = $request->input('name');
+        $query = \App\Admin::query();
+        if (!empty($name)) {
+            $query->where('name', 'LIKE', "%{$name}%");
+        }
+        $admins = $query->get();
+        return view('admin/index', compact('admins', 'name'));
+        
     }
 
     /**

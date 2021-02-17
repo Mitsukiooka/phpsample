@@ -31,6 +31,12 @@
                     <button type="button" class="btn btn-primary" onclick="location.href='{{ route('admin.create') }}'">
                         {{ __('追加') }}
                     </button>
+                    <form class="form-inline my-2 my-lg-0 ml-2">
+                        <div class="form-group">
+                        <input type="text" class="form-control" name="name" value="{{ $name }}">
+                        </div>
+                        <input type="submit" value="検索" class="btn btn-info">
+                    </form>
                     <div class="table-resopnsive">
                         <table class="table table-striped">
                             <thead>
